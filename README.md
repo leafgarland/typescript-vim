@@ -11,4 +11,4 @@ as soon as you have any errors.
     autocmd QuickFixCmdPost [^l]* nested cwindow
     autocmd QuickFixCmdPost    l* nested lwindow
 
-![Obligatory screenshot](./vimshot01.png)
+![Obligatory screenshot](https://raw.github.com/leafgarland/typescript-vim/master/vimshot01.png)
