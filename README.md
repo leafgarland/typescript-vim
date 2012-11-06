@@ -15,7 +15,9 @@ To run the compiler, enter `:make %`, this will run `tsc` against the last saved
 Note, you can use something like this in your `.vimrc` to make the QuickFix window appear
 as soon as you have any errors.
 
-    autocmd QuickFixCmdPost [^l]* nested cwindow
-    autocmd QuickFixCmdPost    l* nested lwindow
+```vim
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+```
 
 ![Obligatory screenshot](https://raw.github.com/leafgarland/typescript-vim/master/vimshot01.png)
