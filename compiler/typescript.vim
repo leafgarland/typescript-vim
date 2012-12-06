@@ -5,4 +5,4 @@ let current_compiler = "typescript"
 
 CompilerSet makeprg=tsc\ $*\ %
 
-CompilerSet errorformat=\ %#%f\ %#(%l\\\,%c):\ %m
+CompilerSet errorformat=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m
