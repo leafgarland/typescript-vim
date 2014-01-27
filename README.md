@@ -19,7 +19,7 @@ Usage
 -----
 
 Once the files are installed the syntax highlighting and compiler settings will be automatically enabled anytime you 
-edit a `.tsc` file.
+edit a `.ts` file.
 
 Compiler settings
 -----------------
