@@ -15,6 +15,11 @@ see the vim docs for [:help runtimepath](http://vimdoc.sourceforge.net/htmldoc/o
 for more information. This might be as simple as copying the files and directories to `~/.vim/` but it 
 depends on your Vim install and operating system.
 
+Indenting
+---------
+
+This plugin used to include some indent settings but they were not very good. There are better options around such as [vim-js-indent](https://github.com/jason0x43/vim-js-indent) that you should install as well.
+
 Usage
 -----
 
