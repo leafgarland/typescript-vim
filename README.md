@@ -7,7 +7,7 @@ from this [blog post](http://blogs.msdn.com/b/interoperability/archive/2012/10/0
 Install
 -------
 
-The simplest way to install is via a Vim add-in manager such as [Vundle](https://github.com/gmarik/vundle) 
+The simplest way to install is via a Vim add-in manager such as [Plug](https://github.com/junegunn/vim-plug), [Vundle](https://github.com/gmarik/vundle) 
 or [Pathogen](https://github.com/tpope/vim-pathogen/).
 
 If you want to install manually then you need to copy the files from this repository into your vim path,
