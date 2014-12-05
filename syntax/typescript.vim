@@ -250,7 +250,7 @@ if version >= 508 || !exists("did_typeScript_syn_inits")
   HiLink typeScriptIdentifier Identifier
   HiLink typeScriptRepeat Repeat
   HiLink typeScriptStatement Statement
-  HiLink typeScriptFuncKeyword Function
+  HiLink typeScriptFuncKeyword Type
   HiLink typeScriptMessage Keyword
   HiLink typeScriptDeprecated Exception
   HiLink typeScriptError Error
