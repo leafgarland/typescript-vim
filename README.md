@@ -34,6 +34,12 @@ in Vim's QuickFix window.
 
 To run the compiler, enter `:make`, this will run `tsc` against the last saved version of your currently edited file.
 
+You can add compiler options by modifying the compiler options variable.
+
+```vim
+let g:typescript_compiler_options = '-sourcemap'
+```
+
 Note, you can use something like this in your `.vimrc` to make the QuickFix window automatically appear
 if `:make` has any errors.
 
