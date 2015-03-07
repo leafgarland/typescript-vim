@@ -178,7 +178,7 @@ syntax match typeScriptDotNotation "\.style\." nextgroup=typeScriptCssStyles
 "" Code blocks
 syntax cluster typeScriptAll contains=typeScriptComment,typeScriptLineComment,typeScriptDocComment,typeScriptStringD,typeScriptStringS,typeScriptRegexpString,typeScriptNumber,typeScriptFloat,typeScriptLabel,typeScriptSource,typeScriptType,typeScriptOperator,typeScriptBoolean,typeScriptNull,typeScriptFuncKeyword,typeScriptConditional,typeScriptGlobal,typeScriptRepeat,typeScriptBranch,typeScriptStatement,typeScriptGlobalObjects,typeScriptMessage,typeScriptIdentifier,typeScriptExceptions,typeScriptReserved,typeScriptDeprecated,typeScriptDomErrNo,typeScriptDomNodeConsts,typeScriptHtmlEvents,typeScriptDotNotation,typeScriptBrowserObjects,typeScriptDOMObjects,typeScriptAjaxObjects,typeScriptPropietaryObjects,typeScriptDOMMethods,typeScriptHtmlElemProperties,typeScriptDOMProperties,typeScriptEventListenerKeywords,typeScriptEventListenerMethods,typeScriptAjaxProperties,typeScriptAjaxMethods,typeScriptFuncArg
 
-if main_syntax == "typeScript"
+if main_syntax == "typescript"
   syntax sync clear
   syntax sync ccomment typeScriptComment minlines=200
 " syntax sync match typeScriptHighlight grouphere typeScriptBlock /{/
@@ -205,7 +205,7 @@ syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 setl foldtext=FoldText()
 endfunction
 
-au FileType typeScript call TypeScriptFold()
+au FileType typescript call TypeScriptFold()
 
 " }}}
 
@@ -314,8 +314,8 @@ endif
 syntax cluster htmltypeScript contains=@typeScriptAll,typeScriptBracket,typeScriptParen,typeScriptBlock,typeScriptParenError
 syntax cluster typeScriptExpression contains=@typeScriptAll,typeScriptBracket,typeScriptParen,typeScriptBlock,typeScriptParenError,@htmlPreproc
 
-let b:current_syntax = "typeScript"
-if main_syntax == 'typeScript'
+let b:current_syntax = "typescript"
+if main_syntax == 'typescript'
   unlet main_syntax
 endif
 
