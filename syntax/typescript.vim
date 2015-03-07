@@ -57,8 +57,8 @@ syntax case match
 
 "" Syntax in the typeScript code"{{{
 syn match typeScriptSpecial "\\\d\d\d\|\\."
-syn region typeScriptStringD start=+"+ skip=+\\\\\|\\"+ end=+"\|$+	contains=typeScriptSpecial,@htmlPreproc
-syn region typeScriptStringS start=+'+ skip=+\\\\\|\\'+ end=+'\|$+	contains=typeScriptSpecial,@htmlPreproc
+syn region typeScriptStringD start=+"+ skip=+\\\\\|\\"+ end=+"\|$+  contains=typeScriptSpecial,@htmlPreproc
+syn region typeScriptStringS start=+'+ skip=+\\\\\|\\'+ end=+'\|$+  contains=typeScriptSpecial,@htmlPreproc
 
 syn match typeScriptSpecialCharacter "'\\.'"
 syn match typeScriptNumber "-\=\<\d\+L\=\>\|0[xX][0-9a-fA-F]\+\>"
@@ -189,9 +189,9 @@ syntax keyword typeScriptFuncKeyword function
 "syntax match typeScriptFuncComma /,/ contained
 " syntax region typeScriptFuncBlock contained matchgroup=typeScriptFuncBlock start="{" end="}" contains=@typeScriptAll,typeScriptParensErrA,typeScriptParensErrB,typeScriptParen,typeScriptBracket,typeScriptBlock fold
 
-syn match	typeScriptBraces "[{}\[\]]"
-syn match	typeScriptParens "[()]"
-syn match	typeScriptOpSymbols "=\{1,3}\|!==\|!=\|<\|>\|>=\|<=\|++\|+=\|--\|-="
+syn match   typeScriptBraces "[{}\[\]]"
+syn match   typeScriptParens "[()]"
+syn match   typeScriptOpSymbols "=\{1,3}\|!==\|!=\|<\|>\|>=\|<=\|++\|+=\|--\|-="
 syn match typeScriptEndColons "[;,]"
 syn match typeScriptLogicSymbols "\(&&\)\|\(||\)"
 
@@ -280,28 +280,29 @@ if version >= 508 || !exists("did_typeScript_syn_inits")
   HiLink typeScriptHtmlElemFuncs PreProc
 
   HiLink typeScriptCssStyles Label
-" Ajax Highlighting
-HiLink typeScriptBrowserObjects Constant
 
-HiLink typeScriptDOMObjects Constant
-HiLink typeScriptDOMMethods Exception
-HiLink typeScriptDOMProperties Type
+  " Ajax Highlighting
+  HiLink typeScriptBrowserObjects Constant
 
-HiLink typeScriptAjaxObjects htmlH1
-HiLink typeScriptAjaxMethods Exception
-HiLink typeScriptAjaxProperties Type
+  HiLink typeScriptDOMObjects Constant
+  HiLink typeScriptDOMMethods Exception
+  HiLink typeScriptDOMProperties Type
 
-HiLink typeScriptFuncDef Title
-    HiLink typeScriptFuncArg Special
-    HiLink typeScriptFuncComma Operator
+  HiLink typeScriptAjaxObjects htmlH1
+  HiLink typeScriptAjaxMethods Exception
+  HiLink typeScriptAjaxProperties Type
 
-HiLink typeScriptHtmlEvents Special
-HiLink typeScriptHtmlElemProperties Type
+  HiLink typeScriptFuncDef Title
+  HiLink typeScriptFuncArg Special
+  HiLink typeScriptFuncComma Operator
 
-HiLink typeScriptEventListenerKeywords Keyword
+  HiLink typeScriptHtmlEvents Special
+  HiLink typeScriptHtmlElemProperties Type
 
-HiLink typeScriptNumber Number
-HiLink typeScriptPropietaryObjects Constant
+  HiLink typeScriptEventListenerKeywords Keyword
+
+  HiLink typeScriptNumber Number
+  HiLink typeScriptPropietaryObjects Constant
 
   delcommand HiLink
 endif
