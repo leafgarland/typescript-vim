@@ -286,19 +286,19 @@ if version >= 508 || !exists("did_typeScript_syn_inits")
   HiLink typeScriptBrowserObjects Constant
 
   HiLink typeScriptDOMObjects Constant
-  HiLink typeScriptDOMMethods Exception
-  HiLink typeScriptDOMProperties Type
+  HiLink typeScriptDOMMethods Function
+  HiLink typeScriptDOMProperties Special
 
-  HiLink typeScriptAjaxObjects htmlH1
-  HiLink typeScriptAjaxMethods Exception
-  HiLink typeScriptAjaxProperties Type
+  HiLink typeScriptAjaxObjects Constant
+  HiLink typeScriptAjaxMethods Function
+  HiLink typeScriptAjaxProperties Special
 
   HiLink typeScriptFuncDef Title
   HiLink typeScriptFuncArg Special
   HiLink typeScriptFuncComma Operator
 
   HiLink typeScriptHtmlEvents Special
-  HiLink typeScriptHtmlElemProperties Type
+  HiLink typeScriptHtmlElemProperties Special
 
   HiLink typeScriptEventListenerKeywords Keyword
 
