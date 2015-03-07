@@ -183,10 +183,10 @@ if main_syntax == "typeScript"
 " syntax sync match typeScriptHighlight grouphere typeScriptBlock /{/
 endif
 
-syntax keyword typeScriptFuncKeyword function contained
-syntax region typeScriptFuncDef start="function" end="\([^)]*\)" contains=typeScriptFuncKeyword,typeScriptFuncArg keepend
-syntax match typeScriptFuncArg "\(([^()]*)\)" contains=typeScriptParens,typeScriptFuncComma contained
-syntax match typeScriptFuncComma /,/ contained
+syntax keyword typeScriptFuncKeyword function
+"syntax region typeScriptFuncDef start="function" end="\(.*\)" contains=typeScriptFuncKeyword,typeScriptFuncArg keepend
+"syntax match typeScriptFuncArg "\(([^()]*)\)" contains=typeScriptParens,typeScriptFuncComma contained
+"syntax match typeScriptFuncComma /,/ contained
 " syntax region typeScriptFuncBlock contained matchgroup=typeScriptFuncBlock start="{" end="}" contains=@typeScriptAll,typeScriptParensErrA,typeScriptParensErrB,typeScriptParen,typeScriptBracket,typeScriptBlock fold
 
 syn match	typeScriptBraces "[{}\[\]]"
@@ -250,7 +250,7 @@ if version >= 508 || !exists("did_typeScript_syn_inits")
   HiLink typeScriptIdentifier Identifier
   HiLink typeScriptRepeat Repeat
   HiLink typeScriptStatement Statement
-  HiLink typeScriptFuncKeyword Type
+  HiLink typeScriptFuncKeyword Function
   HiLink typeScriptMessage Keyword
   HiLink typeScriptDeprecated Exception
   HiLink typeScriptError Error
