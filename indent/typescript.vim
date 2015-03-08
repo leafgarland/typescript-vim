@@ -27,25 +27,48 @@ endif
 let s:keepcpo = &cpo
 set cpo&vim
 
+function! TypescriptPrevNonBlankOrComment(lnum)
+    let pnum = prevnonblank(a:lnum)
+    " skip any comments (either `//`, `/*` or `*`)
+    while getline(pnum) =~ '^\s*\(\/\/\|\/\*\|\*\)'
+        let pnum = prevnonblank(pnum-1)
+    endwhile
+    return pnum
+endfunction
+
 function GetTypescriptIndent()
 
-    let cind = cindent(v:lnum);
+    " default value: trust cindent
+    let ind = cindent(v:lnum)
 
-    if getline(v:lnum) =~ '^\s*[{}]'
-        return cind
+    if getline(v:lnum) =~ '^\s*[{}\*]'
+        return ind
     endif
 
     " The last non-empty line
-    let prev = prevnonblank(v:lnum-1)
+    let prev = TypescriptPrevNonBlankOrComment(v:lnum-1)
 
     " Check if the previous line consists of a single `<variable> : <type>;`
     " declaration (e.g. in interface definitions)
-    if getline(prev) =~ '^\s*\w\+\s*:.\+;\s*$'
+    if getline(prev) =~ '^\s*\w\+\s*:[^{]\+;\s*$'
         return indent(prev)
     endif
 
-    " For everything else, trust cindent:
-    return cind
+    " Try to find out whether the last `}` ended a `<variable> : {` block
+    if getline(prev) =~ '};\s*$'
+        " jump to matching `{` bracket
+        call cursor(prev, 1)
+        silent normal %
+
+        " See if current line is type annotation without closing ';' but open
+        " `{` bracket
+        let lnum = line('.')
+        if getline(lnum) =~ '^\s*\w\+\s*:[^;]\+{'
+            let ind = indent(lnum)
+        endif
+    endif
+
+    return ind
 
 endfunction
 
