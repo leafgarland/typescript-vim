@@ -1,4 +1,4 @@
-" Vim indent file, taken from indent/javascript.vim and java.vim
+" Vim indent file, taken from indent/java.vim
 " Language:	    Typescript
 " Maintainer:	None!  Wanna improve this?
 " Last Change:	2015 Mar 07
@@ -30,16 +30,16 @@ set cpo&vim
 function GetTypescriptIndent()
 
     " The last non-empty line
-    " let prev = prevnonblank(v:lnum-1);
+    let prev = prevnonblank(v:lnum-1)
 
     " Check if the previous line consists of a single `<variable> : <type>;`
     " declaration (e.g. in interface definitions)
-    " if getline(prev) =~ '^\s*\k+\s*:\s*.+;\s*$'
-        " return cindent(prev);
-    " endif
+    if getline(prev) =~ '^\s*\w\+\s*:.\+;\s*$'
+        return indent(prev)
+    endif
 
     " For everything else, trust cindent:
-    return cindent(v:lnum);
+    return cindent(v:lnum)
 
 endfunction
 
