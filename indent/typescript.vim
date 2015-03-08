@@ -1,5 +1,5 @@
-" Vim indent file, taken from indent/javascript.vim
-" Language:	Typescript
+" Vim indent file, taken from indent/javascript.vim and java.vim
+" Language:	    Typescript
 " Maintainer:	None!  Wanna improve this?
 " Last Change:	2015 Mar 07
 
@@ -9,11 +9,42 @@ if exists("b:did_indent")
 endif
 let b:did_indent = 1
 
-" C indenting is not too bad.
-setlocal cindent
-setlocal cinoptions+=j1,J1
+" Use javascript cindent options
+setlocal cindent cinoptions& cinoptions+=j1,J1
+setlocal indentkeys&
 
-" empty indentexpr
-set indentexpr=
+" Load typescript indent function
+setlocal indentexpr=GetTypescriptIndent()
 
-let b:undo_indent = "setl cin<"
+let b:undo_indent = "setl cin< cino< indentkeys< indentexpr<"
+
+" Only define the function once
+if exists("*GetTypescriptIndent")
+    finish
+endif
+
+" Make sure we have vim capabilities
+let s:keepcpo = &cpo
+set cpo&vim
+
+function GetTypescriptIndent()
+
+    " The last non-empty line
+    " let prev = prevnonblank(v:lnum-1);
+
+    " Check if the previous line consists of a single `<variable> : <type>;`
+    " declaration (e.g. in interface definitions)
+    " if getline(prev) =~ '^\s*\k+\s*:\s*.+;\s*$'
+        " return cindent(prev);
+    " endif
+
+    " For everything else, trust cindent:
+    return cindent(v:lnum);
+
+endfunction
+
+" Restore compatibility mode
+let &cpo = s:keepcpo
+unlet s:keepcpo
+
+" vim: et
