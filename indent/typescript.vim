@@ -29,6 +29,12 @@ set cpo&vim
 
 function GetTypescriptIndent()
 
+    let cind = cindent(v:lnum);
+
+    if getline(v:lnum) =~ '^\s*[{}]'
+        return cind
+    endif
+
     " The last non-empty line
     let prev = prevnonblank(v:lnum-1)
 
@@ -39,7 +45,7 @@ function GetTypescriptIndent()
     endif
 
     " For everything else, trust cindent:
-    return cindent(v:lnum)
+    return cind
 
 endfunction
 
