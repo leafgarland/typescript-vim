@@ -198,14 +198,14 @@ syn match typeScriptLogicSymbols "\(&&\)\|\(||\)"
 
 " typeScriptFold Function {{{
 
-function! TypeScriptFold()
+" function! TypeScriptFold()
 setl foldlevelstart=1
 syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 
 setl foldtext=FoldText()
-endfunction
+" endfunction
 
-au FileType typescript call TypeScriptFold()
+" au FileType typescript call TypeScriptFold()
 
 " }}}
 
