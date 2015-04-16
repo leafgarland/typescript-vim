@@ -35,7 +35,7 @@ syn region typeScriptRefD start=+"+ skip=+\\\\\|\\"+ end=+"\|$+
 syn region typeScriptRefS start=+'+ skip=+\\\\\|\\'+ end=+'\|$+
 
 syn match typeScriptCommentSkip "^[ \t]*\*\($\|[ \t]\+\)"
-syn region typeScriptComment start="/\*" end="\*/" contains=@Spell,typeScriptCommentTodo
+syn region typeScriptComment start="/\*" end="\*/" contains=@Spell,typeScriptCommentTodo extend
 "}}}
 "" JSDoc support start"{{{
 if !exists("typeScript_ignore_typeScriptdoc")
@@ -44,7 +44,7 @@ if !exists("typeScript_ignore_typeScriptdoc")
 " syntax coloring for JSDoc comments (HTML)
 "unlet b:current_syntax
 
-  syntax region typeScriptDocComment matchgroup=typeScriptComment start="/\*\*\s*$" end="\*/" contains=typeScriptDocTags,typeScriptCommentTodo,typeScriptCvsTag,@typeScriptHtml,@Spell fold
+  syntax region typeScriptDocComment start="/\*\*\s*$" end="\*/" contains=typeScriptDocTags,typeScriptCommentTodo,typeScriptCvsTag,@typeScriptHtml,@Spell fold extend
   syntax match typeScriptDocTags contained "@\(param\|argument\|requires\|exception\|throws\|type\|class\|extends\|see\|link\|member\|module\|method\|title\|namespace\|optional\|default\|base\|file\)\>" nextgroup=typeScriptDocParam,typeScriptDocSeeTag skipwhite
   syntax match typeScriptDocTags contained "@\(beta\|deprecated\|description\|fileoverview\|author\|license\|version\|returns\=\|constructor\|private\|protected\|final\|ignore\|addon\|exec\)\>"
   syntax match typeScriptDocParam contained "\%(#\|\w\|\.\|:\|\/\)\+"
