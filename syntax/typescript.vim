@@ -59,6 +59,7 @@ syntax case match
 syn match typeScriptSpecial "\\\d\d\d\|\\."
 syn region typeScriptStringD start=+"+ skip=+\\\\\|\\"+ end=+"\|$+  contains=typeScriptSpecial,@htmlPreproc
 syn region typeScriptStringS start=+'+ skip=+\\\\\|\\'+ end=+'\|$+  contains=typeScriptSpecial,@htmlPreproc
+syn region typeScriptStringB start=+`+ skip=+\\\\\|\\`+ end=+`+  contains=typeScriptSpecial,@htmlPreproc
 
 syn match typeScriptSpecialCharacter "'\\.'"
 syn match typeScriptNumber "-\=\<\d\+L\=\>\|0[xX][0-9a-fA-F]\+\>"
@@ -70,6 +71,8 @@ syn region typeScriptRegexpString start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ end=+/[g
 " syntax match typeScriptNumber /\<-\=\d\+L\=\>\|\<0[xX]\x\+\>/
 syntax match typeScriptFloat /\<-\=\%(\d\+\.\d\+\|\d\+\.\|\.\d\+\)\%([eE][+-]\=\d\+\)\=\>/
 " syntax match typeScriptLabel /\(?\s*\)\@<!\<\w\+\(\s*:\)\@=/
+
+syn match typeScriptDecorators /@\([_$a-zA-Z][_$a-zA-Z0-9]*\.\)*[_$a-zA-Z][_$a-zA-Z0-9]*\>/
 "}}}
 "" typeScript Prototype"{{{
 syntax keyword typeScriptPrototype contained prototype
@@ -176,7 +179,7 @@ syntax match typeScriptDotNotation "\.style\." nextgroup=typeScriptCssStyles
 
 
 "" Code blocks
-syntax cluster typeScriptAll contains=typeScriptComment,typeScriptLineComment,typeScriptDocComment,typeScriptStringD,typeScriptStringS,typeScriptRegexpString,typeScriptNumber,typeScriptFloat,typeScriptLabel,typeScriptSource,typeScriptType,typeScriptOperator,typeScriptBoolean,typeScriptNull,typeScriptFuncKeyword,typeScriptConditional,typeScriptGlobal,typeScriptRepeat,typeScriptBranch,typeScriptStatement,typeScriptGlobalObjects,typeScriptMessage,typeScriptIdentifier,typeScriptExceptions,typeScriptReserved,typeScriptDeprecated,typeScriptDomErrNo,typeScriptDomNodeConsts,typeScriptHtmlEvents,typeScriptDotNotation,typeScriptBrowserObjects,typeScriptDOMObjects,typeScriptAjaxObjects,typeScriptPropietaryObjects,typeScriptDOMMethods,typeScriptHtmlElemProperties,typeScriptDOMProperties,typeScriptEventListenerKeywords,typeScriptEventListenerMethods,typeScriptAjaxProperties,typeScriptAjaxMethods,typeScriptFuncArg
+syntax cluster typeScriptAll contains=typeScriptComment,typeScriptLineComment,typeScriptDocComment,typeScriptStringD,typeScriptStringS,typeScriptStringB,typeScriptRegexpString,typeScriptNumber,typeScriptFloat,typeScriptDecorators,typeScriptLabel,typeScriptSource,typeScriptType,typeScriptOperator,typeScriptBoolean,typeScriptNull,typeScriptFuncKeyword,typeScriptConditional,typeScriptGlobal,typeScriptRepeat,typeScriptBranch,typeScriptStatement,typeScriptGlobalObjects,typeScriptMessage,typeScriptIdentifier,typeScriptExceptions,typeScriptReserved,typeScriptDeprecated,typeScriptDomErrNo,typeScriptDomNodeConsts,typeScriptHtmlEvents,typeScriptDotNotation,typeScriptBrowserObjects,typeScriptDOMObjects,typeScriptAjaxObjects,typeScriptPropietaryObjects,typeScriptDOMMethods,typeScriptHtmlElemProperties,typeScriptDOMProperties,typeScriptEventListenerKeywords,typeScriptEventListenerMethods,typeScriptAjaxProperties,typeScriptAjaxMethods,typeScriptFuncArg
 
 if main_syntax == "typescript"
   syntax sync clear
@@ -242,6 +245,7 @@ if version >= 508 || !exists("did_typeScript_syn_inits")
   HiLink typeScriptDocParam Function
   HiLink typeScriptStringS String
   HiLink typeScriptStringD String
+  HiLink typeScriptStringB String
   HiLink typeScriptRegexpString String
   HiLink typeScriptGlobal Constant
   HiLink typeScriptCharacter Character
@@ -265,6 +269,7 @@ if version >= 508 || !exists("did_typeScript_syn_inits")
   HiLink typeScriptNull Type
   HiLink typeScriptNumber Number
   HiLink typeScriptFloat Number
+  HiLink typeScriptDecorators Special
   HiLink typeScriptBoolean Boolean
   HiLink typeScriptLabel Label
   HiLink typeScriptSpecial Special
