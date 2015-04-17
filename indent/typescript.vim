@@ -54,6 +54,12 @@ function GetTypescriptIndent()
         return indent(prev)
     endif
 
+    " If a variable was declared and the semicolon omitted, do not indent
+    " the next line
+    if getline(prev) =~ '^\s*var\s\+\w\+'
+        return indent(prev)
+    endif
+
     " Try to find out whether the last `}` ended a `<variable> : {` block
     if getline(prev) =~ '};\s*$'
         " jump to matching `{` bracket
