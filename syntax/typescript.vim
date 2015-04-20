@@ -57,9 +57,9 @@ syntax case match
 
 "" Syntax in the typescript code"{{{
 syn match typescriptSpecial "\\\d\d\d\|\\."
-syn region typescriptStringD start=+"+ skip=+\\\\\|\\"+ end=+"\|$+  contains=typescriptSpecial,@htmlPreproc
-syn region typescriptStringS start=+'+ skip=+\\\\\|\\'+ end=+'\|$+  contains=typescriptSpecial,@htmlPreproc
-syn region typescriptStringB start=+`+ skip=+\\\\\|\\`+ end=+`+  contains=typescriptSpecial,@htmlPreproc
+syn region typescriptStringD start=+"+ skip=+\\\\\|\\"+ end=+"\|$+  contains=typescriptSpecial,@htmlPreproc extend
+syn region typescriptStringS start=+'+ skip=+\\\\\|\\'+ end=+'\|$+  contains=typescriptSpecial,@htmlPreproc extend
+syn region typescriptStringB start=+`+ skip=+\\\\\|\\`+ end=+`+  contains=typescriptSpecial,@htmlPreproc extend
 
 syn match typescriptSpecialCharacter "'\\.'"
 syn match typescriptNumber "-\=\<\d\+L\=\>\|0[xX][0-9a-fA-F]\+\>"
