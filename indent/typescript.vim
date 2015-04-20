@@ -3,6 +3,10 @@
 " Maintainer:	None!  Wanna improve this?
 " Last Change:	2015 Mar 07
 
+if g:typescript_indent_disable
+  finish
+endif
+
 " Only load this indent file when no other was loaded.
 if exists("b:did_indent")
    finish
