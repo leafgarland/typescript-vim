@@ -3,7 +3,7 @@
 " Maintainer:	None!  Wanna improve this?
 " Last Change:	2015 Mar 07
 
-if g:typescript_indent_disable
+if get(g:, 'typescript_indent_disable')
   finish
 endif
 
