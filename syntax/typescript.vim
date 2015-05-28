@@ -202,9 +202,11 @@ syn match typescriptLogicSymbols "\(&&\)\|\(||\)"
 " typescriptFold Function {{{
 
 " function! typescriptFold()
-syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 
-setl foldtext=FoldText()
+" skip curly braces inside RegEx's and comments
+syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}/ transparent fold keepend extend
+
+" setl foldtext=FoldText()
 " endfunction
 
 " au FileType typescript call typescriptFold()
