@@ -16,6 +16,12 @@ The simplest way to install is via a Vim add-in manager such as
 [Vundle](https://github.com/gmarik/vundle) or
 [Pathogen](https://github.com/tpope/vim-pathogen/).
 
+### Pathogen
+
+```
+git clone https://github.com/leafgarland/typescript-vim.git ~/.vim/bundle/typescript-vim
+```
+
 If you want to install manually then you need to copy the files from this
 repository into your vim path, see the vim docs for [:help
 runtimepath](http://vimdoc.sourceforge.net/htmldoc/options.html#'runtimepath')
