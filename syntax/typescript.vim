@@ -100,7 +100,7 @@ syntax keyword typescriptEventListenerMethods contained scrollIntoView addEventL
 " }}}
 "" Programm Keywords"{{{
 syntax keyword typescriptSource import export from as
-syntax keyword typescriptIdentifier arguments this let var void yield const
+syntax keyword typescriptIdentifier arguments this let var void yield const async await
 syntax keyword typescriptOperator delete new instanceof typeof
 syntax keyword typescriptBoolean true false
 syntax keyword typescriptNull null undefined
