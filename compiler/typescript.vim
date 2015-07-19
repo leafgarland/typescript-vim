@@ -13,4 +13,4 @@ endif
 
 let &l:makeprg = g:typescript_compiler_binary . ' ' . g:typescript_compiler_options . ' $*  %'
 
-CompilerSet errorformat=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m
+CompilerSet errorformat=%f(%l\\\,%c):\ error\ TS%n:\ %m
