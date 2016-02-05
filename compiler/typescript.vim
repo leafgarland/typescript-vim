@@ -11,6 +11,10 @@ if !exists("g:typescript_compiler_options")
   let g:typescript_compiler_options = ""
 endif
 
-let &l:makeprg = g:typescript_compiler_binary . ' ' . g:typescript_compiler_options . ' $*  %'
+if !exists("g:typescript_compiler_target")
+  let g:typescript_compiler_target = '%'
+endif
+
+let &l:makeprg = g:typescript_compiler_binary . ' ' . g:typescript_compiler_options . ' $* ' .  g:typescript_compiler_target
 
 CompilerSet errorformat=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m
