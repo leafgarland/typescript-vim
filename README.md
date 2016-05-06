@@ -50,19 +50,34 @@ let g:typescript_indent_disable = 1
 Compiler settings
 -----------------
 
+This plugin contains compiler settings to set `makeprg` and `errorformat`. 
 The compiler settings enable you to call the `tsc` compiler directly from Vim
 and display any errors or warnings in Vim's QuickFix window. 
 
 To run the compiler, enter `:make`, this will run `tsc` against the last saved
 version of your currently edited file.
 
-You can add compiler options by modifying the compiler options variable.
+The default for `makeprg` is `tsc $* %`. You can enter other compiler options into your `:make`
+command line and they will be inserted in place of `$*`.
+
+There are options to change the compiler name and to insert default options.
 
 ```vim
-let g:typescript_compiler_options = '-sourcemap'
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
 ```
 
-Note, you can use something like this in your `.vimrc` to make the QuickFix
+You can completely override this plugin's compiler settings with something like
+this in your `.vimrc`, where you can set makeprg to whatever you want.
+
+ ```vim
+  autocmd FileType typescript :set makeprg=tsc
+```
+
+Note, this plugin's compiler settings are not used by Syntastic which has its own
+way of changing the options.
+
+You can use something like this in your `.vimrc` to make the QuickFix
 window automatically appear if `:make` has any errors.
 
 ```vim
