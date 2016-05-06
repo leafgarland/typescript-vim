@@ -75,7 +75,7 @@ this in your `.vimrc`, where you can set makeprg to whatever you want.
 ```
 
 Note, this plugin's compiler settings are not used by Syntastic which has its own
-way of changing the options.
+way of changing the options. See https://github.com/scrooloose/syntastic#faqargs.
 
 You can use something like this in your `.vimrc` to make the QuickFix
 window automatically appear if `:make` has any errors.
