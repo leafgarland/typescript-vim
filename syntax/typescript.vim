@@ -59,7 +59,11 @@ syntax case match
 syn match typescriptSpecial "\\\d\d\d\|\\."
 syn region typescriptStringD start=+"+ skip=+\\\\\|\\"+ end=+"\|$+  contains=typescriptSpecial,@htmlPreproc extend
 syn region typescriptStringS start=+'+ skip=+\\\\\|\\'+ end=+'\|$+  contains=typescriptSpecial,@htmlPreproc extend
-syn region typescriptStringB start=+`+ skip=+\\\\\|\\`+ end=+`+  contains=typescriptSpecial,@htmlPreproc extend
+syn region typescriptStringB start=+`+ skip=+\\\\\|\\`+ end=+`+  contains=typescriptInterpolation,typescriptSpecial,@htmlPreproc extend
+
+syn region typescriptInterpolation matchgroup=typescriptInterpolationDelimiter
+      \ start=/${/ end=/}/ contained
+      \ contains=@typescriptExpression
 
 syn match typescriptSpecialCharacter "'\\.'"
 syn match typescriptNumber "-\=\<\d\+L\=\>\|0[xX][0-9a-fA-F]\+\>"
@@ -247,6 +251,7 @@ if version >= 508 || !exists("did_typescript_syn_inits")
   HiLink typescriptStringS String
   HiLink typescriptStringD String
   HiLink typescriptStringB String
+  HiLink typescriptInterpolationDelimiter Delimiter
   HiLink typescriptRegexpString String
   HiLink typescriptGlobal Constant
   HiLink typescriptCharacter Character

@@ -70,7 +70,7 @@ let g:typescript_compiler_options = ''
 You can completely override this plugin's compiler settings with something like
 this in your `.vimrc`, where you can set makeprg to whatever you want.
 
- ```vim
+```vim
   autocmd FileType typescript :set makeprg=tsc
 ```
 
