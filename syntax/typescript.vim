@@ -112,7 +112,7 @@ syntax keyword typescriptDeprecated escape unescape all applets alinkColor bgCol
 syntax keyword typescriptConditional if else switch
 syntax keyword typescriptRepeat do while for in of
 syntax keyword typescriptBranch break continue yield await
-syntax keyword typescriptLabel case default async
+syntax keyword typescriptLabel case default async readonly
 syntax keyword typescriptStatement return with
 
 syntax keyword typescriptGlobalObjects Array Boolean Date Function Infinity Math Number NaN Object Packages RegExp String Symbol netscape
