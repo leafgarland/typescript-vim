@@ -9,14 +9,14 @@ endif
 let b:did_indent = 1
 
 " Now, set up our indentation expression and keys that trigger it.
-setlocal indentexpr=GetJavascriptIndent()
+setlocal indentexpr=GetTypescriptIndent()
 setlocal autoindent nolisp nosmartindent
 setlocal indentkeys+=0],0)
 
 let b:undo_indent = 'setlocal indentexpr< smartindent< autoindent< indentkeys<'
 
 " Only define the function once.
-if exists('*GetJavascriptIndent')
+if exists('*GetTypescriptIndent')
   finish
 endif
 
@@ -144,9 +144,9 @@ function s:label_col()
 endfunction
 
 " configurable regexes that define continuation lines, not including (, {, or [.
-let s:opfirst = '^' . get(g:,'javascript_opfirst',
+let s:opfirst = '^' . get(g:,'typescript_opfirst',
 	  \ '\%([<>=,?^%|*/&]\|\([-.:+]\)\1\@!\|!=\|in\%(stanceof\)\=\>\)')
-let s:continuation = get(g:,'javascript_continuation',
+let s:continuation = get(g:,'typescript_continuation',
 	  \ '\%([-+<>=,.~!?/*^%|&:]\|\<\%(typeof\|delete\|void\|in\|instanceof\)\)') . '$'
 
 function s:continues(ln,con)
@@ -258,7 +258,7 @@ function s:IsBlock()
   endif
 endfunction
 
-function GetJavascriptIndent()
+function GetTypescriptIndent()
   let b:js_cache = get(b:,'js_cache',[0,0,0])
   " Get the current line.
   call cursor(v:lnum,1)
