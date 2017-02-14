@@ -38,13 +38,35 @@ automatically enabled anytime you edit a `.ts` file.
 Indenting
 ---------
 
-This plugin includes a custom indenter (based on `indent/java.vim`), it works
-pretty well but there are cases where it fails. If these bother you or want to
-use other indent settings you can disable it by setting a flag in your
+This plugin includes a custom indenter (based on [pangloss/vim-javascript's
+indenter](https://github.com/pangloss/vim-javascript/blob/master/indent/javascript.vim)),
+it works pretty well but there are cases where it fails. If these bother you or
+want to use other indent settings you can disable it by setting a flag in your
 `.vimrc`:
 
 ```vim
 let g:typescript_indent_disable = 1
+```
+
+If you want the indenter to automatically indent chained method calls as you type.
+
+```typescript
+something
+    .foo()
+    .bar();
+```
+
+Then add something like `setlocal indentkeys+=0.` to your `.vimrc`, see `:help
+'indentkeys'` in vim for more information.
+
+If you use the `=` operator to re-indent code it will always indent
+chained method calls - this can be disabled by changing the regex the
+indent script uses to identify indented lines. In this case removing '.'
+from the regex means that it wont indent lines starting with '.'. Note,
+this is not ideal as the regex may change making your setting out of date.
+
+```vim
+let g:typescript_opfirst='\%([<>=,?^%|*/&]\|\([-:+]\)\1\@!\|!=\|in\%(stanceof\)\=\>\)'
 ```
 
 Compiler settings
