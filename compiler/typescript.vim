@@ -15,6 +15,6 @@ if exists(":CompilerSet") != 2
   command! -nargs=* CompilerSet setlocal <args>
 endif
 
-let &l:makeprg = g:typescript_compiler_binary . ' ' . g:typescript_compiler_options . ' $*  %'
+execute 'CompilerSet makeprg=' . escape(g:typescript_compiler_binary, ' ') . '\ ' . escape(g:typescript_compiler_options, ' ') . escape(' $* %', ' ')
 
 CompilerSet errorformat=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m
