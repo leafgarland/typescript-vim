@@ -16,6 +16,8 @@ The simplest way to install is via a Vim add-in manager such as
 [Vundle](https://github.com/gmarik/vundle) or
 [Pathogen](https://github.com/tpope/vim-pathogen/).
 
+_See the [Installation Wiki](https://github.com/leafgarland/typescript-vim/wiki/Installation)_
+
 ### Pathogen
 
 ```
