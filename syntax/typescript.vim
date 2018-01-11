@@ -65,7 +65,9 @@ syn region typescriptInterpolation matchgroup=typescriptInterpolationDelimiter
       \ start=/${/ end=/}/ contained
       \ contains=@typescriptExpression
 
-syn match typescriptNumber "-\=\<\d[0-9_]*L\=\>\|0[xX][0-9a-fA-F][0-9a-fA-F_]*\>"
+syn match typescriptNumber "-\=\<0[xX][0-9a-fA-F][0-9a-fA-F_]*\>" display
+syn match typescriptNumber "-\=\<0[bB][01][01_]*\>" display
+syn match typescriptNumber "-\=\<0[oO]\o[0-7_]*\>" display
 syn region typescriptRegexpString start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ end=+/[gi]\{0,2\}\s*$+ end=+/[gi]\{0,2\}\s*[;.,)\]}]+me=e-1 contains=@htmlPreproc oneline
 " syntax match typescriptSpecial "\\\d\d\d\|\\x\x\{2\}\|\\u\x\{4\}\|\\."
 " syntax region typescriptStringD start=+"+ skip=+\\\\\|\\$"+ end=+"+ contains=typescriptSpecial,@htmlPreproc
