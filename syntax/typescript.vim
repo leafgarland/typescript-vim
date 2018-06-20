@@ -210,7 +210,7 @@ syn match typescriptLogicSymbols "\(&&\)\|\(||\)"
 " function! typescriptFold()
 
 " skip curly braces inside RegEx's and comments
-syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}/ transparent fold keepend extend
+syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}\()\+;\?\)\?\n*/ transparent fold keepend extend
 
 " setl foldtext=FoldText()
 " endfunction
