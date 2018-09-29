@@ -1,28 +1,26 @@
 " Vim indent file
-" Language: Javascript
-" Maintainer: Chris Paul ( https://github.com/bounceme )
-" URL: https://github.com/pangloss/vim-javascript
-" Last Change: December 4, 2017
+" Language: Typescript
+" Acknowledgement: Almost direct copy from https://github.com/pangloss/vim-javascript
 
 " Only load this indent file when no other was loaded.
-if exists('b:did_indent')
+if exists('b:did_indent') || get(g:, 'typescript_indent_disable', 0)
   finish
 endif
 let b:did_indent = 1
 
 " Now, set up our indentation expression and keys that trigger it.
-setlocal indentexpr=GetJavascriptIndent()
+setlocal indentexpr=GetTypescriptIndent()
 setlocal autoindent nolisp nosmartindent
 setlocal indentkeys+=0],0)
 " Testable with something like:
-" vim  -eNs "+filetype plugin indent on" "+syntax on" "+set ft=javascript" \
-"       "+norm! gg=G" '+%print' '+:q!' testfile.js \
-"       | diff -uBZ testfile.js -
+" vim  -eNs "+filetype plugin indent on" "+syntax on" "+set ft=typescript" \
+"       "+norm! gg=G" '+%print' '+:q!' testfile.ts \
+"       | diff -uBZ testfile.ts -
 
 let b:undo_indent = 'setlocal indentexpr< smartindent< autoindent< indentkeys<'
 
 " Only define the function once.
-if exists('*GetJavascriptIndent')
+if exists('*GetTypescriptIndent')
   finish
 endif
 
@@ -39,11 +37,11 @@ let s:bvars = {
       \ 'syng_strcom': 'string\|comment\|regex\|special\|doc\|template\%(braces\)\@!',
       \ 'syng_str': 'string\|template\|special' }
 " template strings may want to be excluded when editing graphql:
-" au! Filetype javascript let b:syng_str = '^\%(.*template\)\@!.*string\|special'
-" au! Filetype javascript let b:syng_strcom = '^\%(.*template\)\@!.*string\|comment\|regex\|special\|doc'
+" au! Filetype typescript let b:syng_str = '^\%(.*template\)\@!.*string\|special'
+" au! Filetype typescript let b:syng_strcom = '^\%(.*template\)\@!.*string\|comment\|regex\|special\|doc'
 
 function s:GetVars()
-  call extend(b:,extend(s:bvars,{'js_cache': [0,0,0]}),'keep')
+  call extend(b:,extend(s:bvars,{'ts_cache': [0,0,0]}),'keep')
 endfunction
 
 " Get shiftwidth value
@@ -106,7 +104,7 @@ function s:ParseCino(f)
 endfunction
 
 " Optimized {skip} expr, only callable from the search loop which
-" GetJavascriptIndent does to find the containing [[{(] (side-effects)
+" GetTypescriptIndent does to find the containing [[{(] (side-effects)
 function s:SkipFunc()
   if s:top_col == 1
     throw 'out of bounds'
@@ -224,9 +222,9 @@ function s:ExprCol()
 endfunction
 
 " configurable regexes that define continuation lines, not including (, {, or [.
-let s:opfirst = '^' . get(g:,'javascript_opfirst',
+let s:opfirst = '^' . get(g:,'typescript_opfirst',
       \ '\C\%([<>=,.?^%|/&]\|\([-:+]\)\1\@!\|\*\+\|!=\|in\%(stanceof\)\=\>\)')
-let s:continuation = get(g:,'javascript_continuation',
+let s:continuation = get(g:,'typescript_continuation',
       \ '\C\%([<=,.~!?/*^%|&:]\|+\@<!+\|-\@<!-\|=\@<!>\|\<\%(typeof\|new\|delete\|void\|in\|instanceof\|await\)\)') . '$'
 
 function s:Continues()
@@ -236,7 +234,7 @@ function s:Continues()
   elseif tok !~ '[/>]'
     return tok isnot ''
   endif
-  return s:SynAt(line('.'),col('.')) !~? (tok == '>' ? 'jsflow\|^html' : 'regex')
+  return s:SynAt(line('.'),col('.')) !~? (tok == '>' ? 'tsflow\|^html' : 'regex')
 endfunction
 
 " Check if line 'lnum' has a balanced amount of parentheses.
@@ -291,8 +289,8 @@ endfunction
 " encloses the entire context, 'cont' if whether a:firstline is a continued
 " expression, which could have started in a braceless context
 function s:IsContOne(cont)
-  let [l:num, pind] = b:js_cache[1] ?
-        \ [b:js_cache[1], indent(b:js_cache[1]) + s:sw()] : [1,0]
+  let [l:num, pind] = b:ts_cache[1] ?
+        \ [b:ts_cache[1], indent(b:ts_cache[1]) + s:sw()] : [1,0]
   let [ind, b_l] = [indent('.') + !a:cont, 0]
   while line('.') > l:num && ind > pind || line('.') == l:num
     if indent('.') < ind && s:OneScope()
@@ -311,15 +309,15 @@ function s:IsContOne(cont)
 endfunction
 
 function s:IsSwitch()
-  return search(printf('\m\C\%%%dl\%%%dc%s',b:js_cache[1],b:js_cache[2],
+  return search(printf('\m\C\%%%dl\%%%dc%s',b:ts_cache[1],b:ts_cache[2],
         \ '{\_s*\%(\%(\/\/.*\_$\|\/\*\_.\{-}\*\/\)\@>\_s*\)*\%(case\|default\)\>'),'nW'.s:z)
 endfunction
 
 " https://github.com/sweet-js/sweet.js/wiki/design#give-lookbehind-to-the-reader
 function s:IsBlock()
   let tok = s:PreviousToken()
-  if join(s:stack) =~? 'xml\|jsx' && s:SynAt(line('.'),col('.')-1) =~? 'xml\|jsx'
-    let s:in_jsx = 1
+  if join(s:stack) =~? 'xml\|tsx' && s:SynAt(line('.'),col('.')-1) =~? 'xml\|tsx'
+    let s:in_tsx = 1
     return tok != '{'
   elseif tok =~ '\k'
     if tok ==# 'type'
@@ -343,7 +341,7 @@ function s:IsBlock()
   endif
 endfunction
 
-function GetJavascriptIndent()
+function GetTypescriptIndent()
   call s:GetVars()
   let s:synid_cache = [[],[]]
   let l:line = getline(v:lnum)
@@ -356,8 +354,8 @@ function GetJavascriptIndent()
       return l:line =~ '^\s*\*' ? cindent(v:lnum) : -1
     endif
   elseif s:stack[-1] =~? b:syng_str
-    if b:js_cache[0] == v:lnum - 1 && s:Balanced(v:lnum-1,getline(v:lnum-1))
-      let b:js_cache[0] = v:lnum
+    if b:ts_cache[0] == v:lnum - 1 && s:Balanced(v:lnum-1,getline(v:lnum-1))
+      let b:ts_cache[0] = v:lnum
     endif
     return -1
   endif
@@ -382,9 +380,9 @@ function GetJavascriptIndent()
   " the containing paren, bracket, or curly. Many hacks for performance
   call cursor(v:lnum,1)
   let idx = index([']',')','}'],l:line[0])
-  if b:js_cache[0] > l:lnum && b:js_cache[0] < v:lnum ||
-        \ b:js_cache[0] == l:lnum && s:Balanced(l:lnum,pline)
-    call call('cursor',b:js_cache[1:])
+  if b:ts_cache[0] > l:lnum && b:ts_cache[0] < v:lnum ||
+        \ b:ts_cache[0] == l:lnum && s:Balanced(l:lnum,pline)
+    call call('cursor',b:ts_cache[1:])
   else
     let [s:looksyn, s:top_col, s:check_in, s:l1] = [v:lnum - 1,0,0,
           \ max([s:l1, &smc ? search('\m^.\{'.&smc.',}','nbW',s:l1 + 1) + 1 : 0])]
@@ -399,15 +397,15 @@ function GetJavascriptIndent()
     catch /^\Cout of bounds$/
       call cursor(v:lnum,1)
     endtry
-    let b:js_cache[1:] = line('.') == v:lnum ? [0,0] : getpos('.')[1:2]
+    let b:ts_cache[1:] = line('.') == v:lnum ? [0,0] : getpos('.')[1:2]
   endif
 
-  let [b:js_cache[0], num] = [v:lnum, b:js_cache[1]]
+  let [b:ts_cache[0], num] = [v:lnum, b:ts_cache[1]]
 
-  let [num_ind, is_op, b_l, l:switch_offset, s:in_jsx] = [s:Nat(indent(num)),0,0,0,0]
+  let [num_ind, is_op, b_l, l:switch_offset, s:in_tsx] = [s:Nat(indent(num)),0,0,0,0]
   if !num || s:LookingAt() == '{' && s:IsBlock()
     let ilnum = line('.')
-    if num && !s:in_jsx && s:LookingAt() == ')' && s:GetPair('(',')','bW',s:skip_expr)
+    if num && !s:in_tsx && s:LookingAt() == ')' && s:GetPair('(',')','bW',s:skip_expr)
       if ilnum == num
         let [num, num_ind] = [line('.'), indent('.')]
       endif
@@ -445,7 +443,7 @@ function GetJavascriptIndent()
     let pval = s:ParseCino('(')
     if !pval
       let [Wval, vcol] = [s:ParseCino('W'), virtcol('.')]
-      if search('\m'.get(g:,'javascript_indent_W_pat','\S'),'W',num)
+      if search('\m'.get(g:,'typescript_indent_W_pat','\S'),'W',num)
         return s:ParseCino('w') ? vcol : virtcol('.')-1
       endif
       return Wval ? s:Nat(num_ind + Wval) : vcol
