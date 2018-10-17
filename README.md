@@ -91,6 +91,10 @@ let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
 ```
 
+These options will be passed to the binary as command arguments. For example,
+if `g:typescript_compiler_binary = 'tsc'` and `g:typescript_compiler_options = '--lib es6'`,
+`l:makeprg` will be: `tsc --lib es6 $* %`.
+
 You can completely override this plugin's compiler settings with something like
 this in your `.vimrc`, where you can set makeprg to whatever you want.
 
