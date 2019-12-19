@@ -267,7 +267,7 @@ if version >= 508 || !exists("did_typescript_syn_inits")
   HiLink typescriptStorageClass StorageClass
   HiLink typescriptRepeat Repeat
   HiLink typescriptStatement Statement
-  HiLink typescriptFuncKeyword Function
+  HiLink typescriptFuncKeyword Keyword
   HiLink typescriptMessage Keyword
   HiLink typescriptDeprecated Exception
   HiLink typescriptError Error
