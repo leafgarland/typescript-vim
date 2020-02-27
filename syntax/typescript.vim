@@ -78,6 +78,8 @@ syn region typescriptRegexpString start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ end=+/[g
 syntax match typescriptFloat /\<-\=\%(\d[0-9_]*\.\d[0-9_]*\|\d[0-9_]*\.\|\.\d[0-9]*\)\%([eE][+-]\=\d[0-9_]*\)\=\>/
 " syntax match typescriptLabel /\(?\s*\)\@<!\<\w\+\(\s*:\)\@=/
 
+syntax match typescriptProperty /\([_$a-zA-Z][_$a-zA-Z0-9]*\.\)\+[_$a-zA-Z][_$a-zA-Z0-9]*\>/
+
 syn match typescriptDecorators /@\([_$a-zA-Z][_$a-zA-Z0-9]*\.\)*[_$a-zA-Z][_$a-zA-Z0-9]*\>/
 "}}}
 "" typescript Prototype"{{{
@@ -261,6 +263,7 @@ if version >= 508 || !exists("did_typescript_syn_inits")
   HiLink typescriptRegexpString String
   HiLink typescriptGlobal Constant
   HiLink typescriptCharacter Character
+  HiLink typescriptProperty Type
   HiLink typescriptPrototype Type
   HiLink typescriptConditional Conditional
   HiLink typescriptBranch Conditional
