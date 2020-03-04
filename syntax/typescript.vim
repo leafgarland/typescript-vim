@@ -204,9 +204,9 @@ syntax keyword typescriptFuncKeyword function
 
 syn match typescriptBraces "[{}\[\]]"
 syn match typescriptParens "[()]"
-syn match typescriptOpSymbols "=\{1,3}\|!==\|!=\|<\|>\|>=\|<=\|++\|+=\|--\|-="
 syn match typescriptEndColons "[;,]"
 syn match typescriptLogicSymbols "\(&&\)\|\(||\)\|\(!\)"
+syn match typescriptOpSymbols "=\{1,3}\|!==\|!=\|<\|>\|>=\|<=\|++\|+=\|--\|-="
 
 " typescriptFold Function {{{
 
