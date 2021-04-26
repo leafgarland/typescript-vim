@@ -85,7 +85,7 @@ syntax keyword typescriptPrototype contained prototype
 "}}}
 " DOM, Browser and Ajax Support {{{
 """"""""""""""""""""""""
-if get(g:, 'typescript_ignore_browserwords', 0)
+if !get(g:, 'typescript_ignore_browserwords', 0)
   syntax keyword typescriptBrowserObjects window navigator screen history location
 
   syntax keyword typescriptDOMObjects document event HTMLElement Anchor Area Base Body Button Form Frame Frameset Image Link Meta Option Select Style Table TableCell TableRow Textarea
