@@ -69,11 +69,11 @@ syn match typescriptNumber "-\=\<\d[0-9_]*L\=\>" display
 syn match typescriptNumber "-\=\<0[xX][0-9a-fA-F][0-9a-fA-F_]*\>" display
 syn match typescriptNumber "-\=\<0[bB][01][01_]*\>" display
 syn match typescriptNumber "-\=\<0[oO]\o[0-7_]*\>" display
-syn region typescriptRegexpString start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ end=+/[gimsuy]\{0,6\}\s*$+ end=+/[gimsuy]\{0,6\}\s*[;.,)\]}]+me=e-1 contains=@htmlPreproc oneline
+syn region typescriptRegexpString start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ end=+/[dgimsuy]\{0,7\}\s*$+ end=+/[dgimsuy]\{0,7\}\s*[;.,)\]}]+me=e-1 contains=@htmlPreproc oneline
 " syntax match typescriptSpecial "\\\d\d\d\|\\x\x\{2\}\|\\u\x\{4\}\|\\."
 " syntax region typescriptStringD start=+"+ skip=+\\\\\|\\$"+ end=+"+ contains=typescriptSpecial,@htmlPreproc
 " syntax region typescriptStringS start=+'+ skip=+\\\\\|\\$'+ end=+'+ contains=typescriptSpecial,@htmlPreproc
-" syntax region typescriptRegexpString start=+/\(\*\|/\)\@!+ skip=+\\\\\|\\/+ end=+/[gimsuy]\{,6}+ contains=typescriptSpecial,@htmlPreproc oneline
+" syntax region typescriptRegexpString start=+/\(\*\|/\)\@!+ skip=+\\\\\|\\/+ end=+/[dgimsuy]\{,7}+ contains=typescriptSpecial,@htmlPreproc oneline
 " syntax match typescriptNumber /\<-\=\d\+L\=\>\|\<0[xX]\x\+\>/
 syntax match typescriptFloat /\<-\=\%(\d[0-9_]*\.\d[0-9_]*\|\d[0-9_]*\.\|\.\d[0-9]*\)\%([eE][+-]\=\d[0-9_]*\)\=\>/
 " syntax match typescriptLabel /\(?\s*\)\@<!\<\w\+\(\s*:\)\@=/
