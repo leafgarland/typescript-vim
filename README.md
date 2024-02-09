@@ -142,5 +142,7 @@ Syntax highlighting for TypeScript can be customized by following variables.
   highlighted.
 - `g:typescript_ignore_browserwords`: When this variable is set to `1`, browser API names such as
   `window` or `document` will not be highlighted. (default to `0`)
+- `g:typescript_disable_compiler`: When this variable is set to `1`, the compiler will not be modified
+  (default to `0`)
 
 ![Obligatory screenshot](https://raw.github.com/leafgarland/typescript-vim/master/vimshot01.png)
