@@ -224,7 +224,7 @@ syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}/ transparen
 " }}}
 
 " Define the default highlighting.
-if version < 508
+if version >= 508
   command -nargs=+ HiLink hi link <args>
 else
   command -nargs=+ HiLink hi def link <args>
