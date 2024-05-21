@@ -113,7 +113,7 @@ syntax keyword typescriptStorageClass let var const
 syntax keyword typescriptOperator delete new instanceof typeof
 syntax keyword typescriptBoolean true false
 syntax keyword typescriptNull null undefined
-syntax keyword typescriptMessage alert confirm prompt status
+syntax keyword typescriptMessage alert confirm prompt
 syntax keyword typescriptGlobal self top parent
 syntax keyword typescriptDeprecated escape unescape all applets alinkColor bgColor fgColor linkColor vlinkColor xmlEncoding
 "}}}
